@@ -213,3 +213,19 @@ Vagrant plugin for command autocompletion.
 zsh vagrant plugin
 
 To conclude, the Z shell, as well as the oh-my-zsh framework, have been installed. In addition, oh-my-zsh default theme has been changed with some plugins enabled.
+
+## Step 5 - Install powerlevel9k
+
+Download and set the theme to powerlevel9k
+```
+$ git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+$ sed -i 's~ZSH_THEME="robbyrussell"~ZSH_THEME="powerlevel9k/powerlevel9k"~' ~/.zshrc
+$ sed -i '1s/^/export TERM="xterm-256color"\n/' ~/.zshrc
+$ wget --quiet https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+$ wget --quiet https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+$ mv PowerlineSymbols.otf /usr/share/fonts/X11/misc/
+$ mkdir -p ~/.config/fontconfig/conf.d/
+$ mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+$ fc-cache -vf ~/.fonts/ > /dev/null
+```
+
