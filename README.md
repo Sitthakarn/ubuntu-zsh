@@ -221,6 +221,25 @@ Download and set the theme to powerlevel9k
 $ git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 $ sed -i 's~ZSH_THEME="robbyrussell"~ZSH_THEME="powerlevel9k/powerlevel9k"~' ~/.zshrc
 $ sed -i '1s/^/export TERM="xterm-256color"\n/' ~/.zshrc
+```
+## Step 6 - Install fonts powerline
+
+Second, install the powerline fonts so you can see the nice status icons for the current directory of your git repos. You can install the fonts this way:
+```
+$ sudo apt-get install fonts-powerline
+```
+
+Or by cloning the git repo and running their install script:
+```
+$ git clone https://github.com/powerline/fonts.git --depth=1
+$ cd fonts
+$ ./install.sh
+$ cd ..
+$ rm -rf fonts
+```
+If after running those commands (which probably only needed to consist of the apt-get install), the prompt for zsh has not started showing the nice status icons and colorized branches, then you can update the fontconfig information by creating a file in this directory (create the directory if it doesn't exist): ~/.config/fontconfig/conf.d
+
+```
 $ wget --quiet https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
 $ wget --quiet https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
 $ mv PowerlineSymbols.otf /usr/share/fonts/X11/misc/
@@ -229,7 +248,16 @@ $ mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
 $ fc-cache -vf ~/.fonts/ > /dev/null
 ```
 
-## Step 6 - Configure the powerlevel9k theme 
+Then copy this file to ~/.config/fontconfig/conf.d.
+
+Followed by running the font config cache command, which will force the font config cache to be update (-f) and display status information (-v).
+```
+$ fc-cache -vf 
+```
+
+It was after I ran the fc-cache command that I noticed the terminal show the git repo status information with the branch and sattus icons. I used both the apt-get install fonts-powerline method.
+
+## Step 7 - Configure the powerlevel9k theme 
 
 Add prompt to be 2 lines
 add this in .zshrc file
